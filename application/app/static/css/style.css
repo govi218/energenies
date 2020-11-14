@@ -6,13 +6,20 @@
 }
 
 .device-list-item{
+    margin-left: 5%;
     margin-bottom: .5rem;
     padding: 2%;
     border-style: solid;
     border-width: 2px;
     border-color: gray;
     border-radius: .5em;
+    max-width: 95%;
+    width: 95%;
     /* background-color:; */
+}
+
+.device-item{
+    padding: 2%;
 }
 
 .intro{

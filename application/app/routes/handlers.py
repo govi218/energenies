@@ -10,6 +10,11 @@ device_types=["fridge", "oven", "car", "solar panels", "heater"]
 ### in memory database
 global user
 global devices
+global level
+global points
+
+points_to_next_level = 100
+
 
 fridge = Device(id=uuid4().hex[:6], name="fridge", energy_usage=125, points=15, image="fridge.jpeg")
 microwave = Device(id=uuid4().hex[:6], name="microwave", energy_usage=95, points=8, image="microwave.jpeg")
