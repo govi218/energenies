@@ -4,7 +4,8 @@
 
 ## Setting up application
 <br/>
-**Notes**: 
+**Notes**:
+
 * Currently only running as flaks dev server
 * Make sure you run application in a pip virtual environment
 * Install required dependencies: `pip install -r requirements.txt`
