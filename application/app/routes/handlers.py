@@ -3,6 +3,8 @@ from app.data.models import User, Device
 from app.forms.public import StartForm, CreateDeviceForm
 from flask import redirect, render_template, url_for
 
+from app.Aggregator.Aggregation import Customer, Aggregator
+
 
 title = "Energysavers"
 device_types=["fridge", "oven", "car", "solar panels", "heater"]
@@ -60,3 +62,33 @@ def join():
 @app.route('/leave', methods=['GET', 'POST'])
 def leave():
     return redirect(url_for('join'))
+
+
+@app.route('/init_aggr', methods=['GET'])
+def init_aggr():
+
+    # Initialize users
+    customer_number = 5
+
+    aggregator = Aggregator()
+    customers = []
+    for i in range(customer_number):
+        customers.append(Customer(aggregator))
+    
+    for i in range(len(customers)):
+        enc_shares = customers[i].encrypt_shares()
+        customers[i].send_enc_shares(enc_shares)
+
+    aggragation_result = aggregator.aggregate_data()
+    
+    total_Paillier = 0
+    for uuid in aggragation_result:
+        for customer in customers:
+            if uuid is customer.name:
+                aggr_ptxt = customer.private_key.decrypt(aggragation_result[uuid])
+                aggr_ptxt += customer.retained_share
+                total_Paillier += aggr_ptxt
+                print("Sum of shares for user {}: {}".format(uuid, aggr_ptxt))
+
+    print("ptxt sum: ", Customer.smartmeter_reading_sum)
+    print("ctxt sum: ", total_Paillier)

@@ -6,7 +6,7 @@ import sys
 import pandas as pd
 import numpy as np
 
-customer_number = 3
+customer_number = 5
 
 ############### --- MAIN --- #######################
 def main():
@@ -30,10 +30,10 @@ def main():
                 aggr_ptxt = customer.private_key.decrypt(aggragation_result[uuid])
                 aggr_ptxt += customer.retained_share
                 total_Paillier += aggr_ptxt
-                print(aggr_ptxt)
+                print("Sum of shares for user {}: {}".format(uuid, aggr_ptxt))
 
-    print("ptxt sum: ", Customer.smartmeter_reading_sum)
-    print("ctxt sum: ", total_Paillier)
+    print("Generated sum: ", Customer.smartmeter_reading_sum)
+    print("Aggregated sum: ", total_Paillier)
 
 
 
@@ -80,9 +80,7 @@ class Aggregator():
     def aggregate_data(self):
                
         # Dictionary merging
-        print(self.aggregation_input)
         temp_dict = mergeDict(self.aggregation_input)
-        print(temp_dict)
 
         # For each ctxt per key, sum them up together
         sum_ctxt = {}
@@ -126,7 +124,7 @@ class Customer():
     def get_meter_reading(self):
         self.reading = np.random.random() * 1000
         Customer.smartmeter_reading_sum += self.reading
-        print("Smart meter reading generated: ", self.reading)
+        print("Smartmeter reading for user {} : {}".format(self.name, self.reading))
         return self.reading
 
 
