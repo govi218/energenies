@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="container">
-    <div class="row">
+    <div class="row" style="padding-top: 5%;">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center text-center">
-            <h1>Welcome to energy savers!</h1>
+            <img src="{{ url_for('static', filename='imgs/house.jpeg') }}" />
         </div>
+    
+    </div>
+    <div class="row" style="padding-top: 5%;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center text-center intro">
+            <h1><b>Start now and help saving the planet!</b></h1>
+            <p>Bla bla bla</p>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 5%;">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center text-center">
             <div>
                 <form action="" method="POST" role="form">
@@ -15,11 +25,11 @@
                         {% for error in start_form.username.errors %}
                         <div class="alert alert-danger" role="alert">
                             <span>[{{ error }}]</span>
-                        </div>                            
-                        {% endfor %}                        
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="form-section">
-                        {{ start_form.submit() }}
+                        {{ start_form.submit(class="btn btn-primary") }}
 
                     </div>
                 </form>
