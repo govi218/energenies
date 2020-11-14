@@ -11,25 +11,71 @@
     </div>
 
     {% for device in devices %}
-    <div class="row device-list-item">
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 align-self-center text-center">      
-            <img src="{{ url_for('static', filename='imgs/{}'.format(device.image)) }}" />
+    <div class="row device-list-item" id="device-section-{{ device.id }}">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 align-self-center text-center">      
+            <img src="{{ url_for('static', filename='imgs/{}'.format(device.image)) }}" style="height: 75px; width: auto;"/>
+        </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 align-self-center text-center">
+            <input type="text" class="form-control" id="nameInput-{{ device.id }}" value="{{ device.name }}" placeholder="name">
+        </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 align-self-center text-center">
+            <div style="float: left">
+                <span class="mdi mdi-power-plug" aria-hidden="true" style="font-size: 150%;"></span>
+            </div>
+            <div style="float: left">
+                <input type="text" class="form-control" id="usageInput-{{ device.id }}" value="{{ device.energy_usage }}" placeholder="energy usage" style="width: 85%;">
+           
+            </div>   
+            <div class="text-center align-self-center" style="float: left">
+                <p style="margin: 0">KWH</p>
+            </div>   
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 align-self-center text-center">
+            <a class="btn btn-sm btn-primary update-btn" href="#" device_id="{{ device.id }}" role="button">
+                <span class="mdi mdi-check-bold" aria-hidden="true"></span>
+            </a>
+            <a class="btn btn-sm btn-danger delete-btn" href="#" device_id="{{ device.id }}" role="button">
+                <span class="mdi mdi-delete" aria-hidden="true"></span>
+            </a>
+           
+
+
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                    style="color: black; background: transparent; border-color: transparent;"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="mdi mdi-menu" aria-hidden="true" style="font-size: 150%;"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">
+                        <i class="mdi mdi-magnify" aria-hidden="true"></i> Update
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="">
+                        <i class="mdi mdi-delete" aria-hidden="true"></i> Verwijder
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     {% endfor%}
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center text-center">
-            <h3>Add new device</h3>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-self-center text-center">  
+            <a class="btn btn-primary" href="{{ url_for('create') }}" role="button">
+                ADD
+            </a>       
             
-            <p>{{ devices }}</p>
-            <div>
+   
+            <!-- <div>
                 <form action="" method="POST" role="form">
                     {{ create_device_form.hidden_tag() }}
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 align-self-center" style="text-align: right;">
                             <div class="form-section">
-                                {{ create_device_form.name(autocomplete="off") }}
+                               
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 align-self-center" style="text-align: left;">
@@ -39,7 +85,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
