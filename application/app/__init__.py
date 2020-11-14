@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from config import Config
 
-
 def create_app():
 
     app = Flask(__name__)
@@ -11,9 +10,7 @@ def create_app():
 
 
 app = create_app()
-title = "Energysavers"
+
+from app.routes import handlers
 
 
-@app.route('/')
-def index():
-    return render_template('index.html', title=title)
