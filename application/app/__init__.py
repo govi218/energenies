@@ -11,7 +11,9 @@ def create_app():
 
 
 app = create_app()
+title = "Energysavers"
+
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title=title)
