@@ -8,7 +8,7 @@ from app.Aggregator.Aggregation import Customer, Aggregator
 from flask import request, redirect, render_template, url_for, jsonify
 from uuid import uuid4
 
-title = "Energysavers"
+title = "Energenies"
 device_types=["fridge", "oven", "car", "solar panels", "heater"]
 
 ### in memory database
