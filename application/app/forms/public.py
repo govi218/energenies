@@ -7,7 +7,7 @@ class StartForm(FlaskForm):
     submit = SubmitField('Start')
 
 class CreateDeviceForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name (i.e. fridge)"})
+    # name = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Name (i.e. fridge)"})
     # device_type = SelectField('Type', choices=[
     #     ("fridge", "fridge"),
     #     ("oven", "oven"),
@@ -16,4 +16,4 @@ class CreateDeviceForm(FlaskForm):
     #     ("solar panels", "solar panels"),
     #     ("heater", )
     # ])
-    submit = SubmitField('Create')
+    submit = SubmitField('Add')

@@ -11,7 +11,8 @@ class User(object):
 
 class Device(object):
 
-    def __init__(self, name, energy_usage, points, image):
+    def __init__(self, id, name, energy_usage, points, image):
+        self.id = id
         self.name = name
         self.energy_usage = energy_usage
         self.points = points
