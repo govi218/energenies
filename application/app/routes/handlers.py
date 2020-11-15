@@ -41,7 +41,7 @@ def home():
         'home.html',
         title=title,
         devices=devices,
-        create_device_form=create_device_form    
+        create_device_form=create_device_form
         )
 
 
@@ -52,10 +52,10 @@ def create():
     new_device = Device(id=uuid4().hex[:6], name="new device", energy_usage=0, points=0, image="noimage.png")
     global devices
     devices.append(new_device)
-    
-    if request.method == 'POST':        
+
+    if request.method == 'POST':
         print("created new device")
-    
+
     return redirect(url_for('home'))
 
 
@@ -65,8 +65,8 @@ def update():
         for device in devices:
             if device.id == request.form['id']:
                 device.name = request.form['name']
-                device.energy_usage = request.form['usage'] 
-                return jsonify({"success": True})    
+                device.energy_usage = request.form['usage']
+                return jsonify({"success": True})
     return jsonify({"success": False})
 
 
@@ -76,7 +76,7 @@ def delete():
         for device in devices:
             if device.id == request.form['id']:
                 devices.remove(device)
-                return jsonify({"success": True, "redirect": url_for('home')})    
+                return jsonify({"success": True, "redirect": url_for('home')})
     return jsonify({"success": False})
 
 
@@ -87,9 +87,9 @@ def join():
     if start_form.validate_on_submit():
         user = User(username=start_form.username.data)
         return redirect(url_for('home'))
-    
+
     return render_template(
-        'start.html', 
+        'start.html',
         title=title,
         start_form=start_form
         )
@@ -110,13 +110,13 @@ def init_aggr():
     customers = []
     for i in range(customer_number):
         customers.append(Customer(aggregator))
-    
+
     for i in range(len(customers)):
         enc_shares = customers[i].encrypt_shares()
         customers[i].send_enc_shares(enc_shares)
 
     aggragation_result = aggregator.aggregate_data()
-    
+
     total_Paillier = 0
     for uuid in aggragation_result:
         for customer in customers:
@@ -128,3 +128,7 @@ def init_aggr():
 
     print("ptxt sum: ", Customer.smartmeter_reading_sum)
     print("ctxt sum: ", total_Paillier)
+
+@app.route('/signal_processing', methods=['GET'])
+def signal_processing():
+    return app.send_static_file('html/signal-processing.html')
