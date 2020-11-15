@@ -1,8 +1,14 @@
-
-
+.s1 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
 
 .form-section{
     padding: 1%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
 
 .device-list-item{
