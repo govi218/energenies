@@ -1,6 +1,6 @@
 # Zebra-Zeal
 
-## Priacy-Preserving Aggregation protocol
+## Privacy-Preserving Aggregation protocol
 
 The application implements a privacy-preserving data aggregation protocol from Garcia, Flavio & Jacobs, Bart. (2010), "Privacy-Friendly Energy-Metering via Homomorphic Encryption" (https://www.cs.bham.ac.uk/~garciaf/publications/no-leakage.pdf). The protocol relies on Paillier's additively homomorphic encryption scheme allowing certain mathematical operations to be performed on encrypted data. The goal is to compute total consumption of a certain group of households, without leaking any information about their individual consumption.
 
