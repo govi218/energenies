@@ -1,6 +1,6 @@
 from app import app
 from app.data.models import User, Device
-from app.forms.public import StartForm, CreateDeviceForm
+from app.forms.public import StartForm, CreateDeviceForm, AggregationForm
 from flask import redirect, render_template, url_for
 
 from app.Aggregator.Aggregation import Customer, Aggregator
@@ -103,7 +103,7 @@ def leave():
 @app.route('/init_aggr', methods=['GET'])
 def init_aggr():
 
-    start_form = StartForm()
+    start_form = AggregationForm()
 
     # TODO: This shall be called after the buttin is pressed and the user specifies how many Customers shall participate in the aggregation protocol
 
