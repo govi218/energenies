@@ -3,11 +3,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
   <body>
-    <input type="text" id="word" />
-    <button type="button" id="retrieve">Submit</button>
-    <div id="Result"></div>
     <form action="/aggregate" method="POST" role="form" style="position: relative;">
       <img src="{{ url_for('static', filename='imgs/house_backgrounds.jpg') }}" border="0"/>
+      <div style="position: absolute; left: 95px; top: 370px; width:100%;">
+        <!-- <p style="position: absolute; left:33"> TEST OUT </p> -->
+        <!-- <p style="position: absolute; left:315"> TEST OUT </p> -->
+        <!-- <p style="position: absolute; left:595"> TEST OUT </p> -->
+        <!-- <p style="position: absolute; left:873"> TEST OUT </p> -->
+        <!-- <p style="position: absolute; left:1162"> TEST OUT </p> -->
+      </div>
       <div style="position: absolute; left: 90px; top: 550px; width:100%;">
         {{ start_form.hidden_tag() }}
         {{ start_form.smartmeter1(autocomplete="off", style="position:absolute;left:2;") }}
