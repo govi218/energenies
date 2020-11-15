@@ -1,0 +1,29 @@
+Energenies, a gamified application for educating users about their energy usage and taking them through a prosumer's hero journey. 
+
+Singular spectrum decomposition combined with a shallow neural network matches energy consumption patterns to actual devices.
+
+Hardware devices employ homomorphic encryption to enable clustering and other aggregated learning.
+
+Copyright 2020/11/15
+
+Chang Sun
+Dominic Quentin
+Bram Bloks
+Bartosz Czaszyński
+Govind Mohan
+Oskar Person
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+Furthermore this license restricts the usage of this software for patent application.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
