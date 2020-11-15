@@ -104,22 +104,12 @@ def aggregate():
     print(request.form)
     # ImmutableMultiDict([('csrf_token', 'IjlmMWEzYWZlMjU0NzRmNmM3YzA4MzliODIxNjdlNDFhYjQ3YjBjNWMi.X7EXFg.gWzmoRvOlbnP2eLKZowjVjPKxb8'), ('smartmeter1', '1234123'), ('smartmeter2', '1234123'), ('smartmeter3', '1234123'), ('smartmeter4', '1324114'), ('smartmeter5', '12341'), ('submit', 'Start')])
 
-    return
-
-@app.route('/init_aggr', methods=['GET'])
-def init_aggr():
-
-    start_form = AggregationForm()
-
-    # TODO: This shall be called after the buttin is pressed and the user specifies how many Customers shall participate in the aggregation protocol
-
-    # Initialize users
     customer_number = 5
 
     aggregator = Aggregator()
     customers = []
     for i in range(customer_number):
-        customers.append(Customer(aggregator))
+        customers.append(Customer(aggregator, int(request.form["smartmeter{}".format(i+1)])))
 
     for i in range(len(customers)):
         enc_shares = customers[i].encrypt_shares()
@@ -128,16 +118,25 @@ def init_aggr():
     aggragation_result = aggregator.aggregate_data()
 
     total_Paillier = 0
+    list_aggr_ptxt = {}
     for uuid in aggragation_result:
         for customer in customers:
             if uuid is customer.name:
                 aggr_ptxt = customer.private_key.decrypt(aggragation_result[uuid])
                 aggr_ptxt += customer.retained_share
                 total_Paillier += aggr_ptxt
+                list_aggr_ptxt[uuid] = aggr_ptxt
                 print("Sum of shares for user {}: {}".format(uuid, aggr_ptxt))
 
     print("ptxt sum: ", Customer.smartmeter_reading_sum)
     print("ctxt sum: ", total_Paillier)
+
+    return jsonify({"success": True, "intermediate_results":list_aggr_ptxt, "ptxt sum":Customer.smartmeter_reading_sum, "ctxt sum: ":total_Paillier})
+
+@app.route('/init_aggr', methods=['GET'])
+def init_aggr():
+
+    start_form = AggregationForm()
 
     return render_template('aggregation.html', title=title, start_form=start_form)
 

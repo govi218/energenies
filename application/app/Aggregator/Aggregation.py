@@ -107,10 +107,13 @@ class Customer():
         self.key_gen()
         self.name = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 8)) 
 
-    def __init__(self, aggregator):
+    def __init__(self, aggregator, reading):
         self.key_gen()
         self.name = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 8)) 
         self.aggregator = aggregator
+        self.reading = reading
+        Customer.smartmeter_reading_sum += self.reading
+        print("Smartmeter reading for user {} : {}".format(self.name, self.reading))
         aggregator.set_public_key(self.name, self.public_key)
 
 
@@ -121,7 +124,6 @@ class Customer():
 
     # Generate a mock meter reading.
     def get_meter_reading(self):
-        self.reading = np.random.random() * 1000
         Customer.smartmeter_reading_sum += self.reading
         print("Smartmeter reading for user {} : {}".format(self.name, self.reading))
         return self.reading
@@ -129,7 +131,7 @@ class Customer():
 
     # Obtain a meter reading and split into $numer_of_splits shares
     def split_meter_reading(self, number_of_splits):
-        self.reading_shares = (np.random.dirichlet( np.ones(number_of_splits), size=1) * self.get_meter_reading())[0]
+        self.reading_shares = (np.random.dirichlet( np.ones(number_of_splits), size=1) * self.reading)[0]
         return self.reading_shares
 
 
