@@ -106,16 +106,20 @@ def aggregate():
 
     customer_number = 5
 
+    original_meter_redings = {}
     aggregator = Aggregator()
     customers = []
     for i in range(customer_number):
         customers.append(Customer(aggregator, int(request.form["smartmeter{}".format(i+1)])))
+        original_meter_redings[customers[i].name] = int(request.form["smartmeter{}".format(i+1)])
 
     for i in range(len(customers)):
         enc_shares = customers[i].encrypt_shares()
         customers[i].send_enc_shares(enc_shares)
 
     aggragation_result = aggregator.aggregate_data()
+
+    print("origi: {}", original_meter_redings)
 
     total_Paillier = 0
     list_aggr_ptxt = {}
@@ -131,7 +135,7 @@ def aggregate():
     print("ptxt sum: ", Customer.smartmeter_reading_sum)
     print("ctxt sum: ", total_Paillier)
 
-    return jsonify({"success": True, "intermediate_results":list_aggr_ptxt, "ptxt sum":Customer.smartmeter_reading_sum, "ctxt sum: ":total_Paillier})
+    return jsonify({"success": True, "Orinal meter readings":original_meter_redings, "intermediate_results":list_aggr_ptxt, "ptxt sum":Customer.smartmeter_reading_sum, "ctxt sum: ":total_Paillier})
 
 @app.route('/init_aggr', methods=['GET'])
 def init_aggr():
