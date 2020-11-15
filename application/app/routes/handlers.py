@@ -103,6 +103,10 @@ def leave():
 @app.route('/init_aggr', methods=['GET'])
 def init_aggr():
 
+    start_form = StartForm()
+
+    # TODO: This shall be called after the buttin is pressed and the user specifies how many Customers shall participate in the aggregation protocol
+
     # Initialize users
     customer_number = 5
 
@@ -128,6 +132,8 @@ def init_aggr():
 
     print("ptxt sum: ", Customer.smartmeter_reading_sum)
     print("ctxt sum: ", total_Paillier)
+
+    return render_template('aggregation.html', title=title, start_form=start_form)
 
 @app.route('/signal_processing', methods=['GET'])
 def signal_processing():

@@ -3,7 +3,6 @@ import string
 import random 
 import csv
 import sys
-import pandas as pd
 import numpy as np
 
 customer_number = 5
