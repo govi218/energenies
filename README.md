@@ -5,15 +5,28 @@
 ## Setting up application
 <br/>
 
-**Notes**:
+**Note**: application can be run by using `build.sh` script
 
-* Currently only running as flaks dev server
-* Make sure you run application in a pip virtual environment
-* Install required dependencies: `pip install -r requirements.txt`
-* Export environment variables: `export $(cat .env)`
 <br/>
 
-Run dev webserver, and check on `http://localhost:5000/`
-```
-flask run --port=5000
-```
+### [FOR DEVELOPMENT] Running develoment Flask server
+
+1. Start pip virtual environment
+2. Export environment variables: `export $(cat .env)`
+3. Run the dev flask server using bash script `./build -dev`
+
+<br/>
+
+### [FOR STAGING LOCAL] Running as docker container
+
+1. Export environment variables: `export $(cat .env)`
+2. Run staging environment `./build.sh -stag`
+3. Images are automatically pulled and set up
+4. Access application on `localhost/join`
+
+<br/>
+
+### [FOR PRODUCTION REMOTE] 
+
+1. Just don't for now, bad things will happen ;)
+
