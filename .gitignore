@@ -100,6 +100,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+notebooks/timeseries_example.ipynb
 
 # IPython
 profile_default/
