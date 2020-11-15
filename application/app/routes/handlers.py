@@ -99,6 +99,12 @@ def join():
 def leave():
     return redirect(url_for('join'))
 
+@app.route('/aggregate', methods=['POST'])
+def aggregate():
+    print(request.form)
+    # ImmutableMultiDict([('csrf_token', 'IjlmMWEzYWZlMjU0NzRmNmM3YzA4MzliODIxNjdlNDFhYjQ3YjBjNWMi.X7EXFg.gWzmoRvOlbnP2eLKZowjVjPKxb8'), ('smartmeter1', '1234123'), ('smartmeter2', '1234123'), ('smartmeter3', '1234123'), ('smartmeter4', '1324114'), ('smartmeter5', '12341'), ('submit', 'Start')])
+
+    return
 
 @app.route('/init_aggr', methods=['GET'])
 def init_aggr():
