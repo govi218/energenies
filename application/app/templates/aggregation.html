@@ -7,5 +7,44 @@
     <input type="text" id="word" />
     <button type="button" id="retrieve">Submit</button>
     <div id="Result"></div>
+    <form action="" method="POST" role="form">
+        {{ start_form.hidden_tag() }}
+        <div class="form-section">
+            {{ start_form.smartmeter1(autocomplete="off") }}
+            {% for error in start_form.smartmeter1.errors %}
+            <div class="alert alert-danger" role="alert">
+                <span>[{{ error }}]</span>
+            </div>
+            {% endfor %}
+            {{ start_form.smartmeter2(autocomplete="off") }}
+            {% for error in start_form.smartmeter2.errors %}
+            <div class="alert alert-danger" role="alert">
+                <span>[{{ error }}]</span>
+            </div>
+            {% endfor %}
+            {{ start_form.smartmeter3(autocomplete="off") }}
+            {% for error in start_form.smartmeter3.errors %}
+            <div class="alert alert-danger" role="alert">
+                <span>[{{ error }}]</span>
+            </div>
+            {% endfor %}
+            {{ start_form.smartmeter4(autocomplete="off") }}
+            {% for error in start_form.smartmeter4.errors %}
+            <div class="alert alert-danger" role="alert">
+                <span>[{{ error }}]</span>
+            </div>
+            {% endfor %}
+            {{ start_form.smartmeter5(autocomplete="off") }}
+            {% for error in start_form.smartmeter5.errors %}
+            <div class="alert alert-danger" role="alert">
+                <span>[{{ error }}]</span>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="form-section">
+            {{ start_form.submit(class="btn btn-primary") }}
+
+        </div>
+    </form>
   </body>
 </html>
